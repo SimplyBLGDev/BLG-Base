@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6qjkd8m6qqvl"]
+
+[ext_resource type="Script" path="res://kernel/Gameplay/Kernel_Gameplay.gd" id="1_i6vbf"]
+
+[node name="KernelGameplay" type="Node"]
+script = ExtResource("1_i6vbf")
