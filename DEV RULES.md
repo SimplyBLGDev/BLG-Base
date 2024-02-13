@@ -1,3 +1,4 @@
+
 # STYLE GUIDE
 ## FILE AND CLASS NAMES
 .gd files are ALWAYS named the same as their class name (exactly the same)
@@ -139,19 +140,19 @@ func last_function_in_the_file():
 Keep headers gd files headers consistent, follow this order:
 class_name
 extends
-<blank line>
+\<blank line>
 static variables
-<blank line>
+\<blank line>
 @export variables
-<blank line>
+\<blank line>
 variables
-<blank line>
+\<blank line>
 @onready variables
-<blank line>
+\<blank line>
 static functions
 lifetime functions (_ready, _process, _physics_process, _init, etc.)
 other functions
-<ending newline>
+\<ending newline>
 Always keep a scene and the script for the root of that scene in the same folder
 
 Try to remove all print()s and commented lines before commiting to the repo, commented lines are only acceptable in the context of a piece of code that has been TEMPORARILY disabled and WILL be enabled in the near future
