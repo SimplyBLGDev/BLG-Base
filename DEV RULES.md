@@ -7,7 +7,7 @@ If there's a related class that they depend on then make them belong to their 'n
 ## VARIABLE NAMES
 variables are in lower case and in case of multiple words are written_like_this, entirely in lowercase, even for words like hud and ui
 variables are always typed (unless there's a __really__ good reason not to), examples:
-```
+```gdscript
 var result_of_function := function_with_a_return_type()
 var casted_var: Player = find_objects_in_group("player")[0]
 var new_variable := 5.0
@@ -18,7 +18,7 @@ static var variable_name := "A static variable"
 ## GLOBALS
 Globals are necessary in all games, but there are points in the game even in which things that normally are globally required don't exist yet (let's say a player variable could normally be global but when in the bootup menu it wouldn't exist yet and referencing it could lead to errors), because of this we use the Kernel System instead
 create kernels for each part of the game (we could have a kernel for the main menu and a different kernel for the gameplay) and we can reference them with
-```
+```gdscript
 Kernel.MainMenu
 Kernel.Gameplay
 ```
@@ -39,14 +39,14 @@ Always avoid using Autoloads, use the Kernel system instead
 Function names use the same conventions as variable names they_are_written_like_this()
 The parameters of a function are always typed
 If a function returns a value declare the return type in the signature, example:
-```
+```gdscript
 func example_function(example_input: String) -> String:
 	return "_" + example_input
 ```
 
 ## SCENES
 If the scene contains specific nodes that need references NEVER use $, always use Unique names (%) and save them to a variable before using them, example:
-```
+```gdscript
 # WRONG
 func update_label(new_text: String):
 	$Path/To/Label.text = new_text
@@ -76,7 +76,7 @@ Script name UI_HUD_ItemLabel.gd belongs to the root of the scene UI_HUD_ItemLabe
 
 ## MAGIC CONSTANTS
 Never have 'magic numbers' or 'magic strings' in the script, unless it is evident from the context what it does, example:
-```
+```gdscript
 # WRONG
 player.magazines -= 1
 player.ammo += 15
@@ -88,7 +88,7 @@ player.magazines -= 1
 player.ammo += MAGAZINE_CAPACITY
 ```
 If godot treats something as a string name, use the string name, for example, in inputs:
-```
+```gdscript
 # WRONG
 if Input.is_action_pressed("attack"):
 	pass
@@ -101,7 +101,7 @@ if Input.is_action_pressed(&"attack"):
 ## INSTANTIATING PACKED SCENES
 In the case of spawning PackedScenes it is a common problem to hardcode the path to the tscn file on whatever node spawns it, this can bring problems if the file is moved and as such we'll use instead the static instantiate() system
 Every node that can be spawned will have the following piece of code as it's first function
-```
+```gdscript
 class_name Enemy
 extends Node2D
 
@@ -122,7 +122,7 @@ Please note that the create() function is static and also note that it uses load
 
 ## KEEP THINGS CLEAN
 use double empty lines between FUNCTIONS
-```
+```gdscript
 func func_A():
 	pass
 
@@ -131,7 +131,7 @@ func func_B():
 	pass
 ```
 Always leave a newline at the end of the file (very important for versioning)
-```
+```gdscript
 func last_function_in_the_file():
 	pass
 
