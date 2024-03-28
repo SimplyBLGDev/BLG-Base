@@ -13,6 +13,10 @@ static var debug: Debug:
 	get:
 		assert(debug, "Debug is not enabled")
 		return debug
+static var save_data: Save:
+	get:
+		assert(save_data, "Persistence is not enabled")
+		return save_data
 
 
 static func get_current_kernel() -> Kernel:
@@ -25,3 +29,11 @@ static func set_current_kernel(new_kernel: Kernel):
 
 func _ready():
 	assert(false, "Base Kernel node instanced or, derived kernel doesn't initialize properly")
+
+
+func save():
+	save_data.save()
+
+
+func load_savefile():
+	save_data.load()

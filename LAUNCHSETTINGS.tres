@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LaunchSettings" load_steps=2 format=3 uid="uid://rweixxsf4xdp"]
 
-[ext_resource type="Script" path="res://_framework/LaunchSettings.gd" id="1_73n45"]
+[ext_resource type="Script" path="res://framework/LaunchSettings.gd" id="1_73n45"]
 
 [resource]
 script = ExtResource("1_73n45")

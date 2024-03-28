@@ -19,6 +19,14 @@ config/icon="res://icon.svg"
 
 project/assembly_name="BLG Base"
 
+[file_customization]
+
+folder_colors={
+"res://debug/": "green",
+"res://framework/": "green",
+"res://kernel/": "green"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

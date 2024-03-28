@@ -2,7 +2,7 @@ class_name Debug
 extends Node
 
 
-static func spawn():
+static func instantiate():
 	return load("res://debug/Debug.tscn").instantiate()
 
 

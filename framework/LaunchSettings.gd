@@ -8,9 +8,10 @@ var kernel_list = {
 }
 
 @export var debug_enabled := true
+@export var autosave_enabled := true
 @export var initial_kernel := Kernel.KERNEL_LIST.GAMEPLAY
 
 
 ## Spawns and returns kernel
 func get_kernel() -> Kernel:
-	return kernel_list[initial_kernel].create()
+	return kernel_list[initial_kernel].instantiate()

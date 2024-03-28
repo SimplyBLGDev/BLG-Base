@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1bvdcegnxe5k"]
+[gd_scene load_steps=3 format=3 uid="uid://d1bvdcegnxe5k"]
 
 [ext_resource type="Script" path="res://debug/Debug.gd" id="1_w1n4s"]
+[ext_resource type="PackedScene" uid="uid://clcrtogaqs63c" path="res://debug/console/Console.tscn" id="2_tjmdd"]
 
-[node name="Debug" type="Node"]
+[node name="Debug" type="Node" groups=["debug"]]
 script = ExtResource("1_w1n4s")
+
+[node name="Console" parent="." instance=ExtResource("2_tjmdd")]
