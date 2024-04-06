@@ -6,7 +6,7 @@ class_names (and by extension filenames) are capitalized and if multiple words a
 
 If there's a dependent related class make them belong to their 'namespace' (named prefix within the filename) for example, if there's an Item label class as part of the HUD class which in turn is part of the UI class it may be called UI_HUD_ItemLabel and it will be in the file *UI_HUD_ItemLabel.gd*.
 
->Namespaces are delimited by underscores, class names cannot contain underscores to avoid ambiguity.
+> Namespaces are delimited by underscores, class names cannot contain underscores to avoid ambiguity.
 
 ## VARIABLE NAMES
 Variables always use **snake_case**, entirely in lowercase, even for initials like *hud* and *ui*.
@@ -14,7 +14,7 @@ Variables always use **snake_case**, entirely in lowercase, even for initials li
 Variables are always typed (unless there's a __really__ good reason not to), examples:
 ```swift
 var result_of_function := function_with_a_return_type()
-var casted_var: Player = find_objects_in_group("player")[0]
+var typecast_var: Player = find_objects_in_group("player")[0]
 var new_variable := 5.0
 const CONSTANT_NAME := 10
 static var variable_name := "A static variable"
@@ -30,13 +30,12 @@ This is all managed and declared in the **Kernel.gd** script.
 
 Kernel acts as a singleton but it is not, the kernels appear and are destroyed and as such no unnecessary objects exist in memory; It is NOT an Autoload.
 
-## MAINSCENE and LAUNCHSETTINGS
-The main scene is always MAINSCENE.tscn which is a node that will be root to everything, it manages the _kernel_, the _debug_ (when enabled) and holds the _launch settings_.
+## MAINSCENE AND LAUNCHSETTINGS
+The main scene is always __MAINSCENE.tscn__ which is a node that acts as the root to everything, it manages the _kernel_, the _debug_ (when enabled) and holds the _launch settings_.
 
-Launch settings is a resource exported in MAINSCENE.tscn that contains dropdowns and inputs for the starting state of the game, useful for things such as starting level and parameters, always as an export, this will allow the developers, even non-programmers to easily change the starting state of the game for testing without having to worry about versioning and manually editing gd files.
+Launch settings is a resource exported in __MAINSCENE.tscn__, it contains dropdowns and inputs for the starting state of the game, useful for things such as starting level and parameters, this will allow all developers, even non-programmers, to easily change the starting state of the game for testing without having to worry about versioning and manually editing gd files.
 
-## GITIGNORE
-The gitignore contains the LAUNCHSETTINGS.tres file, so as to avoid merge conflicts for different testing environments but this file needs to be uploaded to the initial repo first, make sure to manually commit it if it's not present in the repo.
+Different launch setting presets can be saved as _.tres_ resources and swapped at will.
 
 ## AUTOLOADS
 Always avoid using Autoloads, use the Kernel system instead.
@@ -46,10 +45,19 @@ Function names use the same conventions as variable names, __snake_case()__.
 
 The parameters of a function are always typed.
 
+Helper functions that can only be called from inside the script (or scripts that extend it) should be prefixed with an _ to mark them as 'private'.
+
+Effects, usage and parameters of the function can be documented using _##_ docstrings.
+
 If a function returns a value declare the return type in the signature, example:
 ```swift
+## Description or instructions of example_function(), it will popup when hovering over the function name
 func example_function(example_input: String) -> String:
 	return "_" + example_input
+
+
+func _private_function():
+	return "This function shouldn't be called from outside this very script (or it's inheritors)"
 ```
 
 ## SCENES
@@ -134,6 +142,34 @@ Thanks to this system if the route of the enemy scene is changed it can be updat
 
 Please note that the _instantiate()_ function is static and also that it uses load() instead of preload().
 
+## REFERENCING NODE GROUPS AND OTHER GLOBAL STRINGS
+Within the _framework_ folder in the root of the Godot Project there exists a couple files that contain global constants, in the case that a node group or metadata field name need be referenced please reference the constants within the __Groups.gd__ file.
+
+Example:
+
+```swift
+# WRONG
+var enemies_in_scene := get_nodes_in_group("enemy")
+
+# WRONG
+const ENEMY_GROUP := "enemy"
+var enemies_in_scene := get_nodes_in_group(ENEMY_GROUP)
+
+# CORRECT
+var enemies_in_scene := get_nodes_in_group(Groups.ENEMY)
+```
+
+New groups can be declared within _Groups.gd_ like so:
+```swift
+const ENEMY := "enemy"
+```
+
+> This helps keep group name string constants consistent across the entire project, allowing us to more easily track the usage and modify the name of node groups if necessary.
+
+> A similar system can be used for metadata fields, input maps and other engine-related constants if necessary, keep the script names consistent and the contents declared as constant variables.
+
+> Constants can also be places in Kernel classes, if a constant is required during _Gameplay_ it can be placed in the Gameplay Kernel.
+
 ## KEEP THINGS CLEAN
 use double empty lines between FUNCTIONS
 ```swift
@@ -156,6 +192,10 @@ Keep gd file headers consistent, follow this order:
 class_name
 
 extends
+
+<blank line>
+
+constants
 
 <blank line>
 
@@ -186,16 +226,8 @@ other functions
 
 Always keep a scene and the script for its root in the same folder.
 
->Try to remove all print()s and commented lines before commiting to the repo, commented lines are only acceptable in the context of a piece of code that has been TEMPORARILY disabled and WILL be enabled in the near future
+> Try to remove all print()s and commented lines before commiting to the repo, commented lines are only acceptable in the context of a piece of code that has been TEMPORARILY disabled and WILL be enabled in the near future
 Follow these guidelines as closely as possible and if you find a piece of code that doesn't follow it try to correct it ASAP.
-
-## FOR NON PROGRAMMING DEVELOPERS AND ASSET MAKERS
-On the root of the repository there's a _.concept_ folder, this folder is not read nor compiled by godot and should be used to contain any assets that needs versioning/sharing with the team but don't need to be included in the godot project, such as:
-- Photoshop files
-- Text files for organization, TODO Lists etc.
-- In progress assets
-
->Please keep filenames descriptive and the folder structure clean.
 
 ## CLEAN CODE
 If a function has more than 15 lines of code start thinking about the DRY principle and if possible break it up into smaller functions with descriptive names.
@@ -210,8 +242,16 @@ Do not be afraid of having short functions.
 
 Do not be afraid of having resources with only a few parameters for holding data.
 
+## FOR NON PROGRAMMING DEVELOPERS AND ASSET MAKERS
+On the root of the repository there's a _.concept_ folder, this folder is not read nor compiled by godot and should be used to contain any assets that need versioning/sharing with the team but don't need to be included in the godot project, such as:
+- Photoshop files
+- Text files for organization, TODO Lists etc.
+- In progress assets
+
+> Please keep filenames descriptive and the folder structure clean.
+
 ## COMMITING TO THE REPO
 Always check what files are modified and uncheck any and all files you don't intend to change with your push, this specially includes:
 - Temporary adjustments you did locally in your end for testing.
-- TSCN (Godot scenes) files that you didn't modify the nodes for (please pay close attention).
+- TSCN (Godot scenes) files that you didn't modify the nodes of (please pay close attention).
 - Files that you changed by accident.

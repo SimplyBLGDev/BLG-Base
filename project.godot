@@ -22,6 +22,7 @@ project/assembly_name="BLG Base"
 [file_customization]
 
 folder_colors={
+"res://addons/": "teal",
 "res://debug/": "green",
 "res://framework/": "green",
 "res://kernel/": "green"

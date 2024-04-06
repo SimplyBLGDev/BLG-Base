@@ -31,7 +31,7 @@ static func find_ancestor_of_type(node: Node, type) -> Node:
 
 
 ## Returns last word in string
-static func _get_last_word(from: String) -> String:
+static func get_last_word(from: String) -> String:
 	var final_space_ix := from.rfind(' ')
 	if final_space_ix == -1:
 		return from
