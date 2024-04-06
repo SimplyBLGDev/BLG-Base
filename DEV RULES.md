@@ -193,31 +193,21 @@ class_name
 
 extends
 
-<blank line>
-
 constants
 
-<blank line>
+signals
 
 static variables
 
-<blank line>
-
 @export variables
-
-<blank line>
 
 variables
 
-<blank line>
-
 @onready variables
-
-<blank line>
 
 static functions
 
-lifetime functions (_ready, _process, _physics_process, _init, etc.)
+lifetime functions (_init, _ready, _process, _physics_process, etc.)
 
 other functions
 
