@@ -19,13 +19,18 @@ config/icon="res://icon.svg"
 
 project/assembly_name="BLG Base"
 
+[editor]
+
+script/templates_search_path="res://ScriptTemplates"
+
 [file_customization]
 
 folder_colors={
-"res://addons/": "teal",
-"res://debug/": "green",
-"res://framework/": "green",
-"res://kernel/": "green"
+"res://Debug/": "green",
+"res://Framework/": "green",
+"res://Kernel/": "green",
+"res://ScriptTemplates/": "green",
+"res://addons/": "teal"
 }
 
 [rendering]

@@ -3,7 +3,7 @@ extends Kernel
 
 
 static func instantiate() -> Kernel_Gameplay:
-	return load("res://kernel/Gameplay/Kernel_Gameplay.tscn").instantiate()
+	return load("res://Kernel/Gameplay/Kernel_Gameplay.tscn").instantiate()
 
 
 func _ready():

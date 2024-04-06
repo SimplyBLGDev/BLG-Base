@@ -38,5 +38,5 @@ func _generate_commands_preview(hint: String) -> String:
 
 
 func _update_commands_preview():
-	var last_word := Utils._get_last_word(code_edit.text)
+	var last_word := Utils.get_last_word(code_edit.text)
 	commands_previews.text = _generate_commands_preview(last_word)
