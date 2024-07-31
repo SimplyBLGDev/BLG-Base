@@ -27,8 +27,8 @@ script/templates_search_path="res://ScriptTemplates"
 
 folder_colors={
 "res://Debug/": "green",
-"res://Framework/": "green",
 "res://Kernel/": "green",
+"res://LaunchSettings/": "green",
 "res://ScriptTemplates/": "green",
 "res://addons/": "teal"
 }

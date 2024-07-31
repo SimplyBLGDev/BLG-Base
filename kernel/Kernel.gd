@@ -4,7 +4,7 @@ extends Node
 enum KERNEL_LIST { GAMEPLAY }
 
 static var _current_kernel: Kernel
-static var Example: Kernel_Gameplay:
+static var Gameplay: Kernel_Gameplay:
 	get:
 		assert(_current_kernel, "There's no kernel")
 		assert(_current_kernel is Kernel_Gameplay, "Current Kernel is not gameplay")
@@ -27,13 +27,13 @@ static func set_current_kernel(new_kernel: Kernel):
 	_current_kernel = new_kernel
 
 
-func _ready():
-	assert(false, "Base Kernel node instanced or, derived kernel doesn't initialize properly")
-
-
-func save():
+static func save():
 	save_data.save()
 
 
-func load_savefile():
+static func load_savefile():
 	save_data.load()
+
+
+func _ready():
+	assert(false, "Base Kernel node instanced or, derived kernel doesn't initialize properly")

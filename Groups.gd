@@ -1,4 +1,4 @@
-## Define group names constants here
+## Define group name constants here
 class_name Groups
 extends Resource
 

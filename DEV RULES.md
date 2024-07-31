@@ -1,17 +1,21 @@
 
-# STYLE GUIDE
-## FILE AND CLASS NAMES
-*.gd* files are ALWAYS named the same as their class name (exactly the same)
-class_names (and by extension filenames) are capitalized and if multiple words are necessary they are written in **PascalCase**.
+# Style Guide
 
-If there's a dependent related class make them belong to their 'namespace' (named prefix within the filename) for example, if there's an Item label class as part of the HUD class which in turn is part of the UI class it may be called UI_HUD_ItemLabel and it will be in the file *UI_HUD_ItemLabel.gd*.
+## File, Folder, and Class Names
 
-> Namespaces are delimited by underscores, class names cannot contain underscores to avoid ambiguity.
+- **.gd files** must always be named exactly the same as their class name.
+- **Class names** (and their corresponding filenames) must be capitalized and written in **PascalCase**.
+- Namespaces correspond to folders within the project structure, unless it is a generic or utility class.
+- Files are organized through folders known as _namespaces_, files contained within these namespaces belong to it and are prefixed by all its namespaces. For example, if there is an `ItemLabel` class as part of the HUD system within the UI system, it should be named `UI_HUD_ItemLabel` and located at `res://UI/HUD/UI_HUD_ItemLabel.gd`.
+	- If a script is named the same as its namespace, it should not repeat its name. Instead, it should be treated as the root of the namespace, rather than a member of it. This script will still be placed in the root of the namespace's folder. For example, the `Kernel.gd` file should be located at `res://Kernel/Kernel.gd` rather than `res://Kernel/Kernel_Kernel.gd`.
+- **Folder names** used as namespaces should also be capitalized. Namespaces represent subsystems or areas of the software and should never represent a file type (e.g., avoid creating namespaces for all scripts, all images, all audio files, etc.).
 
-## VARIABLE NAMES
-Variables always use **snake_case**, entirely in lowercase, even for initials like *hud* and *ui*.
+> Namespaces are delimited by underscores. Therefore Class names cannot contain underscores to avoid ambiguity.
 
-Variables are always typed (unless there's a __really__ good reason not to), examples:
+## Variable Names
+
+- Variables must always use **snake_case**, written entirely in lowercase, even in acronyms i.e. *hud* and *ui*.
+- Variables must always be explicitly _typed_ unless there is a compelling reason not to do so. Examples:
 ```swift
 var result_of_function := function_with_a_return_type()
 var typecast_var: Player = find_objects_in_group("player")[0]
@@ -20,48 +24,74 @@ const CONSTANT_NAME := 10
 static var variable_name := "A static variable"
 ```
 
-## GLOBALS
-Globals are necessary in all games, but there are points in the game even in which things that normally are globally required don't exist yet (let's say a player variable could normally be global but when in the bootup menu it wouldn't exist and referencing it could lead to errors), because of this we use the _Kernel System_, creating _kernels_ for each part of the game (we could have a kernel for the main menu and a different kernel for the gameplay) and we can reference them with.
+## Globals
+
+### Autoloads
+
+Autoloads are godot nodes or scripts which _always_ exist during the project's runtime, their main advantages revolve around the ability to access the autoload as an instance, which always exists.
+
+However, these instances are permanently taking resources, can't be disposed of during runtime, and may create errors by making assumptions about the software's state at inapropiate times.
+
+Because of this we can use a system that allows us to combine the advantages of autoloads with the ability to free these scripts when not in use, we call this system the _Kernel System_.
+
+### Kernel System
+
+Via the _Kernel System_, we create _kernels_ for each part of the game which are managed and declared in the `Kernel.gd` script. The Kernel is not an Autoload and kernels individual kernels can be discarded and replaced at will. We can reference these scripts through i.e.
 ```swift
 Kernel.MainMenu
 Kernel.Gameplay
 ```
-This is all managed and declared in the **Kernel.gd** script.
 
-Kernel acts as a singleton but it is not, the kernels appear and are destroyed and as such no unnecessary objects exist in memory; It is NOT an Autoload.
+### Node Groups and Other Constant Values
 
-## MAINSCENE AND LAUNCHSETTINGS
-The main scene is always __MAINSCENE.tscn__ which is a node that acts as the root to everything, it manages the _kernel_, the _debug_ (when enabled) and holds the _launch settings_.
+Use the global constants in the `Groups.gd` file within the `Framework` folder for referencing node groups or metadata field names:
+```swift
+# WRONG
+var enemies_in_scene := get_nodes_in_group("enemy")
 
-Launch settings is a resource exported in __MAINSCENE.tscn__, it contains dropdowns and inputs for the starting state of the game, useful for things such as starting level and parameters, this will allow all developers, even non-programmers, to easily change the starting state of the game for testing without having to worry about versioning and manually editing gd files.
+# WRONG
+const ENEMY_GROUP := "enemy"
+var enemies_in_scene := get_nodes_in_group(ENEMY_GROUP)
 
-Different launch setting presets can be saved as _.tres_ resources and swapped at will.
+# CORRECT
+var enemies_in_scene := get_nodes_in_group(Groups.ENEMY)
+```
 
-## AUTOLOADS
-Always avoid using Autoloads, use the Kernel system instead.
+New groups can be declared within `Groups.gd`:
+```swift
+const ENEMY := "enemy"
+```
 
-## FUNCTIONS
-Function names use the same conventions as variable names, __snake_case()__.
+> This practice keeps group name string constants consistent across the project, facilitating tracking and modification of node group names if necessary. Similar systems can be used for metadata fields, input maps, and other engine-related constants. Keep script names consistent and declare contents as constant variables.
 
-The parameters of a function are always typed.
+> Constants may also be placed in Kernel classes. If a constant is required only during _Gameplay_, it may be placed in the Gameplay Kernel.
 
-Helper functions that can only be called from inside the script (or scripts that extend it) should be prefixed with an _ to mark them as 'private'.
+## Main Scene and Launch Settings
 
-Effects, usage and parameters of the function can be documented using _##_ docstrings.
+- The main scene should always be `MAINSCENE.tscn`, acting as the root, it manages the kernel, debug system (when enabled), and launch settings.
+- Launch settings are a resource exported in `MAINSCENE.tscn`, it includes options for the game's starting state, facilitating testing and modifying the initial state of the project without the need to handle scripts.
+	- Different launch setting presets can be saved as `.tres` resources and swapped as needed.
 
-If a function returns a value declare the return type in the signature, example:
+## Functions
+
+- Function names should follow the same conventions as variable names: **snake_case()**.
+- Function parameters must always be typed explicitly.
+- Use an underscore (_) on internal functions to mark them as 'private'.
+- Document the effects, usage, and parameters of functions using **docstrings**.
+
+If a function returns a value, declare the return type explicitly in the signature:
 ```swift
 ## Description or instructions of example_function(), it will popup when hovering over the function name
 func example_function(example_input: String) -> String:
 	return "_" + example_input
 
-
 func _private_function():
-	return "This function shouldn't be called from outside this very script (or it's inheritors)"
+	return "This function shouldn't be called from outside this very script (or its inheritors)"
 ```
 
-## SCENES
-If a scene contains specific nodes that need references NEVER use $, always use Unique names (%) and save them to a variable before using them, example:
+## Scenes
+
+- Never use `$` (nor `get_node`) for specific node references within a scene. Use unique names (%) and save them to a variable before using them:
 ```swift
 # WRONG
 func update_label(new_text: String):
@@ -81,21 +111,22 @@ var label: Label = %Label
 func update_label(new_text: String):
 	label.text = new_text
 ```
-> Do not be afraid of making small scripts for individual nodes within a scene if advantageous (you can even make them built-in if they're small and useless outside of the scene).
 
-> Do not be afraid of generating sub-scenes, very big scenes are a bad idea.
+> Do not hesitate to create small scripts for individual nodes within a scene if advantageous, even making them built-in if not useful outside the scene.
 
-> Do NOT access nodes of a child subscene directly, create a script in the subscene that has a reference to its child and use that instead.
+>Avoid creating very large scenes, consider generating sub-scenes.
 
-> Do not be afraid of chaining signals or methods across multiple nested subscenes.
+> Do not access nodes of a child subscene directly; create a script in the subscene with a reference to its child and use that instead.
 
-## NODES
-Nodes follow PascalCase, the root of a scene should be named the same as its script (excluding namespaces) for example:
+> Do not hesitate to chain signals or methods across multiple nested subscenes.
 
-A script name _UI_HUD_ItemLabel.gd_ belongs to the root of the scene _UI_HUD_ItemLabel.tscn_ and the root node of the scene is called _ItemLabel_.
+## Nodes
 
-## MAGIC CONSTANTS
-Never have 'magic numbers' or 'magic strings' in the script, unless it is evident from the context what it does, example:
+Nodes must follow PascalCase. The root of a scene should be named the same as its script (excluding namespaces), for example a script named `UI_HUD_ItemLabel.gd` should belong to the root of the scene `UI_HUD_ItemLabel.tscn`, and the root node of the scene should be called `ItemLabel`, `HUD_ItemLabel`, or `UI_HUD_ItemLabel` (specify namespaces if necessary for clarity).
+
+## Constants
+
+Avoid 'magic numbers' and 'magic strings' in scripts, unless their meaning is evident from the context:
 ```swift
 # WRONG
 player.magazines -= 1
@@ -107,7 +138,8 @@ const MAGAZINE_CAPACITY := 15
 player.magazines -= 1
 player.ammo += MAGAZINE_CAPACITY
 ```
-If godot treats something as a string name, use the string name, for example, in inputs:
+
+If Godot treats something as a string name, use the string name, for example, in inputs:
 ```swift
 # WRONG
 if Input.is_action_pressed("attack"):
@@ -118,60 +150,32 @@ if Input.is_action_pressed(&"attack"):
 	pass
 ```
 
-## INSTANTIATING PACKED SCENES
-When spawning PackedScenes it is a common error to hardcode the path to the tscn file on whatever script spawns it, this can bring problems if the file is moved and as such we'll use instead a static _instantiate()_ implementation.
+## Instantiating Scenes
 
-Every node that can be spawned will have the following piece of code as it's first function.
+Avoid hardcoding the path to the tscn file when spawning PackedScenes. Instead, use a static `instantiate()` implementation:
 ```swift
-class_name Enemy
+class_name Entities_Enemy
 extends Node2D
 
-static func instantiate() -> Enemy:
+static func instantiate() -> Entities_Enemy:
 	return load("res://Entities/Enemy.tscn").instantiate()
 ```
-It can then be spawned by doing
+
+Spawn the node using:
 ```swift
 class_name EnemySpawner
 extends Node2D
 
 func spawn_enemy():
-	var new_enemy := Enemy.instantiate()
+	var new_enemy := Entities_Enemy.instantiate()
 	add_child(new_enemy)
 ```
-Thanks to this system if the route of the enemy scene is changed it can be updated in _Enemy.gd_ and we don't have to worry about it anywhere else.
 
-Please note that the _instantiate()_ function is static and also that it uses load() instead of preload().
+This ensures that if the route of the enemy scene changes, it can be updated in `Enemy.gd` without concerns elsewhere. Note that the `instantiate()` function is static and uses `load()` instead of `preload()`.
 
-## REFERENCING NODE GROUPS AND OTHER GLOBAL STRINGS
-Within the _framework_ folder in the root of the Godot Project there exists a couple files that contain global constants, in the case that a node group or metadata field name need be referenced please reference the constants within the __Groups.gd__ file.
+## Maintain Clean Code
 
-Example:
-
-```swift
-# WRONG
-var enemies_in_scene := get_nodes_in_group("enemy")
-
-# WRONG
-const ENEMY_GROUP := "enemy"
-var enemies_in_scene := get_nodes_in_group(ENEMY_GROUP)
-
-# CORRECT
-var enemies_in_scene := get_nodes_in_group(Groups.ENEMY)
-```
-
-New groups can be declared within _Groups.gd_ like so:
-```swift
-const ENEMY := "enemy"
-```
-
-> This helps keep group name string constants consistent across the entire project, allowing us to more easily track the usage and modify the name of node groups if necessary.
-
-> A similar system can be used for metadata fields, input maps and other engine-related constants if necessary, keep the script names consistent and the contents declared as constant variables.
-
-> Constants can also be places in Kernel classes, if a constant is required during _Gameplay_ it can be placed in the Gameplay Kernel.
-
-## KEEP THINGS CLEAN
-use double empty lines between FUNCTIONS
+- Use double empty lines between functions:
 ```swift
 func func_A():
 	pass
@@ -180,15 +184,13 @@ func func_A():
 func func_B():
 	pass
 ```
-Always leave a newline at the end of the file (very important for versioning).
+- Always leave a newline at the end of the file (important for versioning):
 ```swift
 func last_function_in_the_file():
 	pass
-
 ```
-Keep gd file headers consistent, follow this order:
-
-```gdscript
+- Follow this order for gd file headers:
+```swift
 class_name
 
 extends
@@ -214,34 +216,41 @@ other functions
 <ending newline>
 ```
 
-Always keep a scene and the script for its root in the same folder.
+- Keep a scene and the script used on its root in the same folder and with the same name. 
 
-> Try to remove all print()s and commented lines before commiting to the repo, commented lines are only acceptable in the context of a piece of code that has been TEMPORARILY disabled and WILL be enabled in the near future
-Follow these guidelines as closely as possible and if you find a piece of code that doesn't follow it try to correct it ASAP.
+- Remove all `print()` statements and commented lines before committing to the repo. Commented lines are acceptable only if the code has been temporarily disabled and will be enabled soon.
 
-## CLEAN CODE
-If a function has more than 15 lines of code start thinking about the DRY principle and if possible break it up into smaller functions with descriptive names.
+## Clean Code Practices
 
-Use comments only when the line of code or method in question is obtuse to figure out.
+- For functions exceeding 15 lines, consider the DRY principle and break them into smaller functions with descriptive names.
+- Use comments only for lines of code or methods that are difficult to understand.
+- For multiple tightly related variables in the same class, consider creating a resource. Pack commonly passed parameters into a resource.
+- Avoid comments if a more descriptive variable or function name would suffice. Similarly, break down code into functions rather than using comments.
+- Do not hesitate to have short functions or resources with only a few parameters for holding data.
 
-If there are multiple tightly related variables in the same class consider splitting those variables into a resource, if you're always passing the same set of parameters through multiple functions, pack them on a resource.
+# For Non-Programming Developers and Asset Makers
 
-Do not use comments if a more descriptive variable name/function name would explain it, do not use comments if breaking a piece of the code into another function would explain it.
+## .concept Folder
 
-Do not be afraid of having short functions.
-
-Do not be afraid of having resources with only a few parameters for holding data.
-
-## FOR NON PROGRAMMING DEVELOPERS AND ASSET MAKERS
-On the root of the repository there's a _.concept_ folder, this folder is not read nor compiled by godot and should be used to contain any assets that need versioning/sharing with the team but don't need to be included in the godot project, such as:
+The `.concept` folder at the root of the repository is not read or compiled by Godot. Use it to store assets that need versioning/sharing with the team but not inclusion in the Godot project, such as:
 - Photoshop files
-- Text files for organization, TODO Lists etc.
-- In progress assets
+- Text files for organization, TODO lists, etc.
+- In-progress assets
 
-> Please keep filenames descriptive and the folder structure clean.
+> Keep filenames descriptive and the folder structure clean.
 
-## COMMITING TO THE REPO
-Always check what files are modified and uncheck any and all files you don't intend to change with your push, this specially includes:
-- Temporary adjustments you did locally in your end for testing.
-- TSCN (Godot scenes) files that you didn't modify the nodes of (please pay close attention).
+## Asset File Paths
+
+When incorporating or exporting assets for the project, adhere to the project's file structure:
+- Folders (or _namespaces_) represent a software subsystem, a gameplay mechanic, or an area of the game. Assets used exclusively by a namespace should be within it.
+- Assets used by multiple unrelated namespaces should be placed in the _Assets_ folder in the root of the project.
+- Asset names must use **PascalCase** without underscores, spaces, or special characters.
+- Asset names should include all namespaces, separated by underscores (e.g., a font used by the HUD should be at `res://UI/HUD/UI_HUD_Font.ttf`).
+- Keep filenames descriptive.
+
+## Committing to the Repo
+
+- Always check modified files and uncheck any files not intended in your commit before pushing. This includes:
+- Temporary local adjustments for testing.
+- TSCN (Godot scenes) files that you didn't modify the nodes of (pay close attention).
 - Files that you changed by accident.
