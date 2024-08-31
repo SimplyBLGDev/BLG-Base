@@ -12,8 +12,8 @@ config_version=5
 
 config/name="BLG Base"
 run/main_scene="res://MAINSCENE.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://Icon.svg"
 
 [dotnet]
 
@@ -26,10 +26,13 @@ script/templates_search_path="res://ScriptTemplates"
 [file_customization]
 
 folder_colors={
+"res://Audio/": "green",
 "res://Debug/": "green",
 "res://Kernel/": "green",
 "res://LaunchSettings/": "green",
+"res://Save/": "green",
 "res://ScriptTemplates/": "green",
+"res://Utils/": "green",
 "res://addons/": "teal"
 }
 

@@ -7,4 +7,9 @@ static func instantiate() -> Kernel_Gameplay:
 
 
 func _ready():
-	Kernel.set_current_kernel(self)
+	if Kernel.launch_settings.custom_initial_scene:
+		var instance: Node = Kernel.launch_settings.custom_initial_scene.instantiate()
+		add_child(instance)
+		return
+	
+	# Default initial scene here

@@ -3,15 +3,8 @@
 class_name LaunchSettings
 extends Resource
 
-var kernel_list = {
-	Kernel.KERNEL_LIST.GAMEPLAY: Kernel_Gameplay
-}
-
-@export var debug_enabled := true
-@export var autosave_enabled := true
-@export var initial_kernel := Kernel.KERNEL_LIST.GAMEPLAY
-
-
-## Spawns and returns kernel
-func get_kernel() -> Kernel:
-	return kernel_list[initial_kernel].instantiate()
+@export var enable_debug := false
+@export var enable_persistence := true
+@export var custom_save: Save
+@export var custom_initial_scene: PackedScene
+@export var initial_kernel := Kernel.KERNEL_TYPE.GAMEPLAY
