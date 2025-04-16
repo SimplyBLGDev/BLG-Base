@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LaunchSettings" load_steps=2 format=3 uid="uid://dtumgfhssnffn"]
+
+[ext_resource type="Script" uid="uid://cvtuv7s1waf31" path="res://LaunchSettings/LaunchSettings.gd" id="1_mhp65"]
+
+[resource]
+script = ExtResource("1_mhp65")
+enable_debug = true
+enable_persistence = true
+initial_kernel = 0
+metadata/_custom_type_script = "uid://cvtuv7s1waf31"

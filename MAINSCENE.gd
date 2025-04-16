@@ -17,11 +17,7 @@ func _ready():
 
 
 func initialize_window():
-	get_viewport().size = launch_settings.render_size
-	
-	var diff = Vector2i((launch_settings.window_size - DisplayServer.window_get_size()) * 0.5)
-	DisplayServer.window_set_size(launch_settings.window_size)
-	DisplayServer.window_set_position(DisplayServer.window_get_position() - diff)
+	pass
 
 
 func initialize_systems():

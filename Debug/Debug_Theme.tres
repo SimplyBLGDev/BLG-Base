@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cds6e1twtwfs"]
+
+[ext_resource type="FontFile" uid="uid://hcsej05oj6su" path="res://Debug/Font/kongtext.ttf" id="1_3fj37"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vksjm"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0.784314)
+border_width_bottom = 1
+
+[resource]
+default_font = ExtResource("1_3fj37")
+default_font_size = 8
+LineEdit/styles/focus = SubResource("StyleBoxFlat_vksjm")

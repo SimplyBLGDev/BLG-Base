@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnbrpieaonnin"]
 
-[ext_resource type="Script" path="res://MAINSCENE.gd" id="1_nt24y"]
-[ext_resource type="Resource" uid="uid://rweixxsf4xdp" path="res://LaunchSettings/LAUNCHSETTINGS.tres" id="2_iqghh"]
+[ext_resource type="Script" uid="uid://d33e452xu5w7c" path="res://MAINSCENE.gd" id="1_nt24y"]
+[ext_resource type="Resource" uid="uid://dtumgfhssnffn" path="res://LaunchSettings/default.tres" id="2_6stle"]
 
 [node name="MAINSCENE" type="Node"]
 script = ExtResource("1_nt24y")
-launch_settings = ExtResource("2_iqghh")
+launch_settings = ExtResource("2_6stle")
