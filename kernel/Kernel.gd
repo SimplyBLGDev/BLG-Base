@@ -1,3 +1,4 @@
+@icon("res://Kernel/Kernel.svg")
 class_name Kernel
 extends Node
 

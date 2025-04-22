@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 4.2333333 4.2333333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="Kernel.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="67.904377"
+     inkscape:cx="8.8506813"
+     inkscape:cy="8.4751532"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="5112"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g6"
+       transform="rotate(90,2.1166667,2.1166667)" />
+    <g
+       id="g49"
+       transform="translate(0.04767259,-0.09342858)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g49"
+       id="use49"
+       transform="rotate(90,2.1166667,2.1166667)" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#4cb161;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:15;stroke-dasharray:none;stroke-opacity:1"
+       id="path49"
+       cx="-3.7473932e-08"
+       cy="2.9934187"
+       rx="0.96366358"
+       ry="2.4275718"
+       transform="rotate(-45)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path49"
+       id="use50"
+       transform="rotate(90,2.1166453,2.1079794)" />
+    <circle
+       style="fill:#4cb161;fill-opacity:1;stroke:none;stroke-width:0.317;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:15;stroke-dasharray:none;stroke-opacity:1"
+       id="path51"
+       cx="2.1166666"
+       cy="2.1166666"
+       r="0.63121849" />
+  </g>
+</svg>

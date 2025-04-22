@@ -40,7 +40,7 @@ script/templates_search_path="res://ScriptTemplates"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/finite_state_machine/plugin.cfg", "res://addons/guide/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/transform_container/plugin.cfg")
+enabled=PackedStringArray("res://addons/guide/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/transform_container/plugin.cfg")
 
 [file_customization]
 
@@ -52,6 +52,7 @@ folder_colors={
 "res://LaunchSettings/": "green",
 "res://Save/": "green",
 "res://ScriptTemplates/": "green",
+"res://StateMachine/": "green",
 "res://Utils/": "green",
 "res://addons/": "teal"
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bag547e08wrn5"
-path="res://.godot/imported/state_machine_state.svg-2b6b3f2f14c9f2e13a76d86e345f8c38.ctex"
+uid="uid://b84kuprr6e5xb"
+path="res://.godot/imported/StateMachine_Transition_Guard.svg-7b2d040ee579766e486f016fedca09d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/finite_state_machine/icons/state_machine_state.svg"
-dest_files=["res://.godot/imported/state_machine_state.svg-2b6b3f2f14c9f2e13a76d86e345f8c38.ctex"]
+source_file="res://StateMachine/Transition/Guard/StateMachine_Transition_Guard.svg"
+dest_files=["res://.godot/imported/StateMachine_Transition_Guard.svg-7b2d040ee579766e486f016fedca09d2.ctex"]
 
 [params]
 
