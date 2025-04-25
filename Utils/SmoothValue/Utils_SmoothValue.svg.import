@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84kuprr6e5xb"
-path="res://.godot/imported/StateMachine_Transition_Guard.svg-7b2d040ee579766e486f016fedca09d2.ctex"
+uid="uid://cokpv56c7cso7"
+path="res://.godot/imported/Utils_SmoothValue.svg-8e08a36a1fd223b307bcce09c3b3610f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StateMachine/Transition/Guard/StateMachine_Transition_Guard.svg"
-dest_files=["res://.godot/imported/StateMachine_Transition_Guard.svg-7b2d040ee579766e486f016fedca09d2.ctex"]
+source_file="res://Utils/SmoothValue/Utils_SmoothValue.svg"
+dest_files=["res://.godot/imported/Utils_SmoothValue.svg-8e08a36a1fd223b307bcce09c3b3610f.ctex"]
 
 [params]
 
@@ -21,9 +21,9 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
@@ -31,7 +31,7 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
 svg/scale=1.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

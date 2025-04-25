@@ -1,3 +1,4 @@
+@icon("res://Debug/Debug.svg")
 class_name Debug
 extends Node
 

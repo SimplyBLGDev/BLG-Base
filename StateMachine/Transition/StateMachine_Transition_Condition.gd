@@ -14,24 +14,29 @@ var expression := Expression.new()
 func setup():
 	set_process(not check_on_physics_process)
 	set_physics_process(check_on_physics_process)
-	get_state().on_enter_state.connect(check_expression)
+	get_state().on_enter_state.connect(check_expression_fetch_delta)
 	evaluation_context = get_evaluation_context()
-	expression.parse(condition)
+	expression.parse(condition, ["delta"])
 
 
 func _process(delta: float) -> void:
-	check_expression()
+	check_expression(delta)
 
 
 func _physics_process(delta: float) -> void:
-	check_expression()
+	check_expression(delta)
 
 
-func check_expression():
+func check_expression_fetch_delta():
+	var delta := get_physics_process_delta_time() if check_on_physics_process else get_process_delta_time()
+	check_expression(delta)
+
+
+func check_expression(delta: float):
 	if not enabled:
 		return
 	
-	var result = expression.execute([], evaluation_context)
+	var result = expression.execute([delta], evaluation_context)
 	if expression.has_execute_failed():
 		push_error(expression.get_error_text())
 		return

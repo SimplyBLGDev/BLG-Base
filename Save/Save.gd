@@ -1,3 +1,4 @@
+@icon("res://Save/Save.svg")
 ## Define global save parameters here
 class_name Save
 extends Resource

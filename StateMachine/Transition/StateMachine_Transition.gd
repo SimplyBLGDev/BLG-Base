@@ -7,6 +7,7 @@ signal triggered
 var enabled := false
 
 @export var target: StateMachine_State
+@export var await_exit_method := false # Optionally awaitable method to execute before completing transition
 
 
 func setup():
@@ -15,6 +16,10 @@ func setup():
 
 func trigger():
 	if enabled:
+		enabled = false
+		if await_exit_method:
+			await get_state().on_outbound_transition(target)
+		
 		get_state().change_state(target)
 		triggered.emit()
 

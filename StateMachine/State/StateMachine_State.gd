@@ -27,8 +27,19 @@ func on_exit(to: StateMachine_State):
 	pass
 
 
+func on_outbound_transition(to: StateMachine_State):
+	pass
+
+
 func change_state(to: StateMachine_State):
 	if is_instance_valid(state_machine):
 		state_machine.change_state(to)
+	else:
+		push_error("State ", self, " not initialized")
+
+
+func change_state_name(name: StringName):
+	if is_instance_valid(state_machine):
+		state_machine.change_state_name(name)
 	else:
 		push_error("State ", self, " not initialized")

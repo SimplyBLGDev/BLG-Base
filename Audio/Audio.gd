@@ -1,3 +1,4 @@
+@icon("res://Audio/Audio.svg")
 class_name Audio
 extends Node
 
