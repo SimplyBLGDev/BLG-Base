@@ -3,3 +3,4 @@ class_name Groups
 extends Resource
 
 const DEBUG := "debug"
+const DRAGGABLE := "draggable"

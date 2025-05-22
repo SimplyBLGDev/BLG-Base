@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqlsgm8b6lrm5"]
+
+[ext_resource type="Script" uid="uid://bkomnoq1d83ou" path="res://Utils/ClickCamera/Utils_ClickCamera.gd" id="1_sfl1k"]
+[ext_resource type="Resource" uid="uid://bd3l2l1g1c8db" path="res://Input/Drag/Input_Drag_CusorPosition.tres" id="2_qus6g"]
+[ext_resource type="Resource" uid="uid://cbk6uikhm2nis" path="res://Input/Drag/Input_Drag_RelativeCusorPosition.tres" id="3_6lgag"]
+[ext_resource type="Resource" uid="uid://du4km7ppfv1f4" path="res://Input/Drag/Input_Drag_DragDelta.tres" id="4_6lgag"]
+[ext_resource type="Resource" uid="uid://cidkq5np1j7sp" path="res://Input/Drag/Input_Drag_StartDrag.tres" id="4_v412v"]
+[ext_resource type="Resource" uid="uid://ciy8ukcr5jl1g" path="res://Input/Drag/Input_Drag_Drag.tres" id="5_nugiw"]
+[ext_resource type="Resource" uid="uid://dswd325ebvou2" path="res://Input/Drag/Input_Drag_EndDrag.tres" id="6_lngly"]
+[ext_resource type="Resource" uid="uid://d0kg20wh7c5hk" path="res://Input/Drag/Input_Drag_Click.tres" id="7_vufbe"]
+
+[node name="ClickCamera" type="Camera2D"]
+script = ExtResource("1_sfl1k")
+_cursor_position = ExtResource("2_qus6g")
+_relative_cursor_position = ExtResource("3_6lgag")
+_drag_delta = ExtResource("4_6lgag")
+_drag_start = ExtResource("4_v412v")
+_drag = ExtResource("5_nugiw")
+_drag_end = ExtResource("6_lngly")
+_click = ExtResource("7_vufbe")
+
+[node name="DragOffset" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="NodeDragger" type="RemoteTransform2D" parent="DragOffset"]
+unique_name_in_owner = true
+update_rotation = false
+update_scale = false

@@ -48,6 +48,7 @@ folder_colors={
 "res://Audio/": "green",
 "res://ControlAnimator/": "green",
 "res://Debug/": "green",
+"res://Input/": "blue",
 "res://Kernel/": "green",
 "res://LaunchSettings/": "green",
 "res://Save/": "green",
@@ -56,6 +57,10 @@ folder_colors={
 "res://Utils/": "green",
 "res://addons/": "teal"
 }
+
+[global_group]
+
+draggable="Can be dragged by Utils_ClickCamera"
 
 [input]
 

@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6qjkd8m6qqvl"]
+[gd_scene load_steps=4 format=3 uid="uid://c6qjkd8m6qqvl"]
 
 [ext_resource type="Script" uid="uid://ca0ytmlrqsddc" path="res://Kernel/Gameplay/Kernel_Gameplay.gd" id="1_dkb6g"]
+[ext_resource type="Resource" uid="uid://bm7d0gtlcpp4g" path="res://Input/Drag/Input_Drag.tres" id="2_17np6"]
+[ext_resource type="PackedScene" uid="uid://bqlsgm8b6lrm5" path="res://Utils/ClickCamera/Utils_ClickCamera.tscn" id="2_mnucv"]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource("1_dkb6g")
+default_mapping_context = ExtResource("2_17np6")
+
+[node name="ClickCamera" parent="." instance=ExtResource("2_mnucv")]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://byseujemv3p8p"]
+[gd_scene load_steps=7 format=3 uid="uid://byseujemv3p8p"]
 
 [ext_resource type="Script" uid="uid://748l3sc2ib0n" path="res://Debug/Debug.gd" id="1_06orm"]
 [ext_resource type="Theme" uid="uid://cds6e1twtwfs" path="res://Debug/Debug_Theme.tres" id="2_j4xd6"]
-[ext_resource type="Script" path="res://Debug/Debug_CommandConsole.gd" id="2_tdxyb"]
+[ext_resource type="Script" uid="uid://c6k5bomg6owjx" path="res://Debug/Debug_CommandConsole.gd" id="2_tdxyb"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="3_xjcft"]
 [ext_resource type="Script" uid="uid://buxe2u1mkjhyy" path="res://Debug/Debug_Commands.gd" id="4_ct2g1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fse01"]
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_j4xd6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="hud/Control"]
@@ -34,7 +36,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="TrackedLabelContainer" type="GridContainer" parent="hud/Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="hud/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GuideDebugger" parent="hud/Control/VBoxContainer/HBoxContainer" instance=ExtResource("3_xjcft")]
+layout_mode = 2
+
+[node name="TrackedLabelContainer" type="GridContainer" parent="hud/Control/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
