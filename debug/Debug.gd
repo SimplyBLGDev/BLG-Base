@@ -4,7 +4,7 @@ extends Node
 
 @onready var command_log: RichTextLabel = %CommandLog
 @onready var command_console: LineEdit = %CommandConsole
-@onready var tracked_label_container: GridContainer = %TrackedLabelContainer
+@onready var tracked_values: Debug_TrackedValue_Container = %TrackedLabelContainer
 @onready var hud: CanvasLayer = %hud
 @onready var commands: Debug_Commands = %Commands
 
@@ -15,14 +15,6 @@ static func instantiate() -> Debug:
 func _ready():
 	Kernel.Debug = self
 	command_console.hide()
-
-
-func track_property(from, property: StringName, header: String = ""):
-	var new_label := Debug_TrackedValueLabel.instantiate()
-	new_label.header = (header if header != "" else from.name + '::' + property) + ': '
-	new_label.from = from
-	new_label.property = property
-	tracked_label_container.add_child(new_label)
 
 
 func print_to_cmd_log(text: String, color := "white") -> void:

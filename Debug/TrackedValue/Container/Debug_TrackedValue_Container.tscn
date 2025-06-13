@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnvideeohsh24"]
+
+[ext_resource type="Script" uid="uid://df1syflrrgdqk" path="res://Debug/TrackedValue/Container/Debug_TrackedValue_Container.gd" id="1_i3ttm"]
+
+[node name="TrackedLabelContainer" type="GridContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_i3ttm")
